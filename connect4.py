@@ -8,7 +8,7 @@ WHITE = (255,255,255)
 RED = (255,0,0)
 CYAN = (0,255,255)
  
-ROW_COUNT = 7
+ROW_COUNT = 6
 COLUMN_COUNT = 7
  
 def create_board():
