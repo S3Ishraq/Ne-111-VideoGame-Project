@@ -194,4 +194,4 @@ while not game_over: # Main game loop. Will end if user quits, or a player has w
  
             if game_over: # gives enough time for players to view the 'wining game' message (M.T)
                 pygame.time.wait(3000)
-Our completed GUI Connect Four 
+#Our completed GUI Connect Four 
