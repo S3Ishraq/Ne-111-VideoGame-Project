@@ -3,10 +3,10 @@ import pygame
 import sys
 import math
  
-BLUE = (0,0,255)
 BLACK = (0,0,0)
+WHITE = (255,255,255)
 RED = (255,0,0)
-YELLOW = (255,255,0)
+CYAN = (0,255,255)
  
 ROW_COUNT = 7
 COLUMN_COUNT = 7
@@ -57,15 +57,15 @@ def winning_move(board, piece):
 def draw_board(board):
     for c in range(COLUMN_COUNT):
         for r in range(ROW_COUNT):
-            pygame.draw.rect(screen, BLUE, (c*SQUARESIZE, r*SQUARESIZE+SQUARESIZE, SQUARESIZE, SQUARESIZE))
-            pygame.draw.circle(screen, BLACK, (int(c*SQUARESIZE+SQUARESIZE/2), int(r*SQUARESIZE+SQUARESIZE+SQUARESIZE/2)), RADIUS)
+            pygame.draw.rect(screen, BLACK, (c*SQUARESIZE, r*SQUARESIZE+SQUARESIZE, SQUARESIZE, SQUARESIZE))
+            pygame.draw.circle(screen, WHITE, (int(c*SQUARESIZE+SQUARESIZE/2), int(r*SQUARESIZE+SQUARESIZE+SQUARESIZE/2)), RADIUS)
      
     for c in range(COLUMN_COUNT):
         for r in range(ROW_COUNT):      
             if board[r][c] == 1:
                 pygame.draw.circle(screen, RED, (int(c*SQUARESIZE+SQUARESIZE/2), height-int(r*SQUARESIZE+SQUARESIZE/2)), RADIUS)
             elif board[r][c] == 2: 
-                pygame.draw.circle(screen, YELLOW, (int(c*SQUARESIZE+SQUARESIZE/2), height-int(r*SQUARESIZE+SQUARESIZE/2)), RADIUS)
+                pygame.draw.circle(screen, CYAN, (int(c*SQUARESIZE+SQUARESIZE/2), height-int(r*SQUARESIZE+SQUARESIZE/2)), RADIUS)
     pygame.display.update()
  
  
@@ -102,16 +102,16 @@ while not game_over:
             sys.exit()
  
         if event.type == pygame.MOUSEMOTION:
-            pygame.draw.rect(screen, BLACK, (0,0, width, SQUARESIZE))
+            pygame.draw.rect(screen, WHITE, (0,0, width, SQUARESIZE))
             posx = event.pos[0]
             if turn == 0:
                 pygame.draw.circle(screen, RED, (posx, int(SQUARESIZE/2)), RADIUS)
             else: 
-                pygame.draw.circle(screen, YELLOW, (posx, int(SQUARESIZE/2)), RADIUS)
+                pygame.draw.circle(screen, CYAN, (posx, int(SQUARESIZE/2)), RADIUS)
         pygame.display.update()
  
         if event.type == pygame.MOUSEBUTTONDOWN:
-            pygame.draw.rect(screen, BLACK, (0,0, width, SQUARESIZE))
+            pygame.draw.rect(screen, WHITE, (0,0, width, SQUARESIZE))
             #print(event.pos)
             # Ask for Player 1 Input
             if turn == 0:
@@ -138,7 +138,7 @@ while not game_over:
                     drop_piece(board, row, col, 2)
  
                     if winning_move(board, 2):
-                        label = myfont.render("Player 2 wins!!", 1, YELLOW)
+                        label = myfont.render("Player 2 wins!!", 1, CYAN)
                         screen.blit(label, (40,10))
                         game_over = True
  
