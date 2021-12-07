@@ -5,15 +5,14 @@ import numpy as np
 import pygame
 import sys
 import math
- 
 #------------------#
 # Global Variables #
 #------------------#
 # Set initial (RGB 8 bit) color values (M.T) 
-BLUE = (0,0,255) # Board Color (M.T)
-BLACK = (0,0,0) # Background Color (M.T)
+BLACK = (0,0,0) # Board Color (M.T)
+WHITE = (255,255,255) # Background Color (M.T)
 RED = (255,0,0) # Player 1 Color (M.T)
-YELLOW = (255,255,0) # Player 2 Color (M.T)
+CYAN = (0,255,255) # Player 2 Color (M.T)
  
 # Set initial size of playing board (M.T) 
 ROW_COUNT = 6
@@ -93,17 +92,17 @@ def winning_move(board, piece):
 # Call from MAIN  (M.T)
 # Requires 'board (np.array)' (M.T)  
 def draw_board(board):
-    for c in range(COLUMN_COUNT): # Print the background and Blue Play Space (M.T)  
+    for c in range(COLUMN_COUNT): # Print the background and Black Play Space (M.T)  
         for r in range(ROW_COUNT):
-            pygame.draw.rect(screen, BLUE, (c*SQUARESIZE, r*SQUARESIZE+SQUARESIZE, SQUARESIZE, SQUARESIZE))
-            pygame.draw.circle(screen, BLACK, (int(c*SQUARESIZE+SQUARESIZE/2), int(r*SQUARESIZE+SQUARESIZE+SQUARESIZE/2)), RADIUS)
+            pygame.draw.rect(screen, BLACK, (c*SQUARESIZE, r*SQUARESIZE+SQUARESIZE, SQUARESIZE, SQUARESIZE))
+            pygame.draw.circle(screen, WHITE, (int(c*SQUARESIZE+SQUARESIZE/2), int(r*SQUARESIZE+SQUARESIZE+SQUARESIZE/2)), RADIUS)
      
     for c in range(COLUMN_COUNT): # Print the game pieces (M.T)  
         for r in range(ROW_COUNT):      
             if board[r][c] == 1: # Check if value has player 1's piece (M.T)  
                 pygame.draw.circle(screen, RED, (int(c*SQUARESIZE+SQUARESIZE/2), height-int(r*SQUARESIZE+SQUARESIZE/2)), RADIUS)
             elif board[r][c] == 2: # Check if value has player 2's piece  (M.T)  
-                pygame.draw.circle(screen, YELLOW, (int(c*SQUARESIZE+SQUARESIZE/2), height-int(r*SQUARESIZE+SQUARESIZE/2)), RADIUS)
+                pygame.draw.circle(screen, CYAN, (int(c*SQUARESIZE+SQUARESIZE/2), height-int(r*SQUARESIZE+SQUARESIZE/2)), RADIUS)
     pygame.display.update() # Refresh the GUI buffer to print new objects (M.T)  
  
 ########
@@ -147,16 +146,16 @@ while not game_over: # Main game loop. Will end if user quits, or a player has w
  
         # Print Player pieces while mouse moves on game screen (M.T)
         if event.type == pygame.MOUSEMOTION: # is the mouse moving? (M.T)
-            pygame.draw.rect(screen, BLACK, (0,0, width, SQUARESIZE))
+            pygame.draw.rect(screen, WHITE, (0,0, width, SQUARESIZE))
             posx = event.pos[0]
             if turn == 0: # If player 1's turn, draw the correct circle (M.T)
                 pygame.draw.circle(screen, RED, (posx, int(SQUARESIZE/2)), RADIUS)
             else: # Then it is player 2's turn, draw the correct circle (M.T)
-                pygame.draw.circle(screen, YELLOW, (posx, int(SQUARESIZE/2)), RADIUS)
+                pygame.draw.circle(screen, CYAN, (posx, int(SQUARESIZE/2)), RADIUS)
         pygame.display.update() # Refresh the GUI buffer to print screen (Pieces moving with mouse) (M.T)
  
         if event.type == pygame.MOUSEBUTTONDOWN: # Has the player clicked the mouse, making a turn? (M.T) 
-            pygame.draw.rect(screen, BLACK, (0,0, width, SQUARESIZE))
+            pygame.draw.rect(screen, WHITE, (0,0, width, SQUARESIZE))
             #print(event.pos)
             # Ask for Player 1 Input
             if turn == 0: # Is it player 1's turn? (M.T)
@@ -183,7 +182,7 @@ while not game_over: # Main game loop. Will end if user quits, or a player has w
                     drop_piece(board, row, col, 2) # Move the piece (M.T)
  
                     if winning_move(board, 2): # Has the player won the game? (M.T)
-                        label = myfont.render("Player 2 wins!!", 1, YELLOW)
+                        label = myfont.render("Player 2 wins!!", 1, CYAN)
                         screen.blit(label, (40,10))
                         game_over = True # Game is over - exit main game loop (M.T)
  
@@ -195,9 +194,9 @@ while not game_over: # Main game loop. Will end if user quits, or a player has w
    
             # The swapping of colors (M.T)
             TempColorChange = RED
-            RED = YELLOW
-            YELLOW = TempColorChange
+            RED = CYAN
+            CYAN = TempColorChange
  
             if game_over: # gives enough time for players to view the 'wining game' message (M.T)
                 pygame.time.wait(3000)
-Our completed GUI Connect Four 
+#Our completed GUI Connect Four(Colour Switch Edition)
