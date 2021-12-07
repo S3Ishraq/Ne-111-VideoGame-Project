@@ -15,6 +15,7 @@ RED = (255,0,0) # Player 1 Color (M.T)
 CYAN = (0,255,255) # Player 2 Color (M.T)
  
 # Set initial size of playing board (M.T) 
+
 ROW_COUNT = 6
 COLUMN_COUNT = 7
  
@@ -113,6 +114,7 @@ print_board(board) # Print the np.array (ASCII) (M.T)
 game_over = False  
 turn = 0 # Player 1 starts their turn (M.T)  
 TempColorChange = RED # Temp Variable for switching colors (M.T)
+
  
 #initalize pygame
 pygame.init()
@@ -146,6 +148,7 @@ while not game_over: # Main game loop. Will end if user quits, or a player has w
  
         # Print Player pieces while mouse moves on game screen (M.T)
         if event.type == pygame.MOUSEMOTION: # is the mouse moving? (M.T)
+
             pygame.draw.rect(screen, WHITE, (0,0, width, SQUARESIZE))
             posx = event.pos[0]
             if turn == 0: # If player 1's turn, draw the correct circle (M.T)
@@ -155,6 +158,7 @@ while not game_over: # Main game loop. Will end if user quits, or a player has w
         pygame.display.update() # Refresh the GUI buffer to print screen (Pieces moving with mouse) (M.T)
  
         if event.type == pygame.MOUSEBUTTONDOWN: # Has the player clicked the mouse, making a turn? (M.T) 
+
             pygame.draw.rect(screen, WHITE, (0,0, width, SQUARESIZE))
             #print(event.pos)
             # Ask for Player 1 Input
@@ -182,6 +186,7 @@ while not game_over: # Main game loop. Will end if user quits, or a player has w
                     drop_piece(board, row, col, 2) # Move the piece (M.T)
  
                     if winning_move(board, 2): # Has the player won the game? (M.T)
+
                         label = myfont.render("Player 2 wins!!", 1, CYAN)
                         screen.blit(label, (40,10))
                         game_over = True # Game is over - exit main game loop (M.T)
@@ -200,3 +205,4 @@ while not game_over: # Main game loop. Will end if user quits, or a player has w
             if game_over: # gives enough time for players to view the 'wining game' message (M.T)
                 pygame.time.wait(3000)
 #Our completed GUI Connect Four(Colour Switch Edition)
+
